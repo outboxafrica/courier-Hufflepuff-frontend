@@ -1,0 +1,25 @@
+.title{
+    font-family: 'Times New Roman', Times, serif;
+    font: 70px ;
+    
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 10px;
+}
+
+.menu{
+    display: flex;
+    padding: 0 10px;
+    text-decoration: none;
+}
+.link{
+    padding: 0 10px;
+    list-style-type: none;
+}
+.link:hover{
+    background-color: #f1f1f1;
+}
