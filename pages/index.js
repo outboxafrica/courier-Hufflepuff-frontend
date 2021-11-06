@@ -1,10 +1,42 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+ import Head from "next/head";
+import Cars from "../components/Cars";
+import CarSlider from "../components/Slider";
+import Sidebar from "../components/Sidebar";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import main from "../styles/Main.module.css";
+// import { getSession } from "next-auth/react";
+import { server } from "../config/config";
+// import { CartProvider } from "../context/contextProducts";
 
 export default function Home() {
+  const [data, setData] = useState([]);
+  const [cars, setCars] = useState(data);
+  //  const session = getSession(context);
+  const router = useRouter();
+  const getCar = async (value) => {
+    const res = await fetch(server);
+    const { data } = await res.json();
+
+    const filteredCategory = data.filter((item) =>
+      item.category.toLowerCase().includes(value.toLowerCase())
+    );
+
+    // console.log(filteredCategory);
+    return setCars(value === "" ? data : filteredCategory);
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(server);
+      const { data } = await res.json();
+      setData(data);
+      setCars(data);
+    };
+    fetchData();
+  }, []);
+
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>drive your dream</title>
         <meta name="description" content="drive your self" />
@@ -13,14 +45,20 @@ export default function Home() {
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossOrigin="anonymous"
-        ></link>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cerulean/bootstrap.min.css" integrity="sha384-3fdgwJw17Bi87e1QQ4fsLn4rUFqWw//KU0g8TvV6quvahISRewev6/EocKNuJmEw" crossOrigin="anonymous"></link>
+        />
         {/* <Link rel="icon" href="/favicon.ico" /> */}
       </Head>
+      {/* <Navbar /> */}
+      <div style={{ width: "90%" }}>
+        <CarSlider data={data} />
+        <div className={main.box}>
+          <Sidebar getCar={getCar} />
+          <Cars data={cars} />
+        </div>
+      </div>
 
-      
-
-     
-    </div>
-  )
+      {/* <Footer /> */}
+    </>
+  );
 }
+

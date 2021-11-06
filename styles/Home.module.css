@@ -1,5 +1,8 @@
 .container {
   padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .main {
@@ -66,11 +69,12 @@
 }
 
 .grid {
-  display: flex;
+  flex:3;
+  display: grid;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+  gap: 1em;
+  margin: 1% 5%;
 }
 
 .card {
@@ -82,7 +86,8 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-width: 200px;
+  object-fit: contain;
 }
 
 .card:hover,
