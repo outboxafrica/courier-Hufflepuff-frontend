@@ -45,11 +45,10 @@ export default function Home() {
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossOrigin="anonymous"
-        ></link>
+        />
         {/* <Link rel="icon" href="/favicon.ico" /> */}
       </Head>
       {/* <Navbar /> */}
-
       <div style={{ width: "90%" }}>
         <CarSlider data={data} />
         <div className={main.box}>
@@ -62,7 +61,4 @@ export default function Home() {
     </>
   );
 }
-
-
-  
 
