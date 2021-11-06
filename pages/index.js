@@ -5,7 +5,7 @@ import Sidebar from "../components/Sidebar";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import main from "../styles/Main.module.css";
-// import { getSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 import { server } from "../config/config";
 // import { CartProvider } from "../context/contextProducts";
 
