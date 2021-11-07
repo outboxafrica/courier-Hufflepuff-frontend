@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import NavBar from "../components/navBar";
 import { useAuth } from "../context/authContext";
 import { useRouter } from "next/router";
-
-function AdminDashboard() {
+import { getDocs, collection, getFirestore } from "firebase/firestore";
+import app from "../firebaseClient";
+function AdminDashboard({orders}) {
   const { currentUser } = useAuth();
+  console.log(orders)
   const router = useRouter();
   useEffect(() => {
     console.log("checking user");
@@ -55,5 +57,20 @@ function AdminDashboard() {
     </div>
   );
 }
+
+export const ServerSideProps = async () => {
+  const db = getFirestore();
+  const orders = [];
+  const orderData = await getDocs(collection(db, "test_db"));
+  orderData.map((doc) => {
+    return orders.push({ ...doc.data(), id: doc.id });
+  });
+
+  return {
+    props: {
+      orders,
+    },
+  };
+};
 
 export default AdminDashboard;
