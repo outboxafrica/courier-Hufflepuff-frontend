@@ -3,13 +3,16 @@ import '../styles/globals.css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { SessionProvider } from 'next-auth/react';
+import { CartProvider } from "../context/contextProducts";
 
 function MyApp({ Component, pageProps }) {
   return (
     <SessionProvider session={pageProps.session}>
+      <CartProvider>
       <Layout>
         <Component {...pageProps} />
        </Layout>
+      </CartProvider>
     </SessionProvider>
     
     

@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { server } from "../../config/config";
 import styles from "../../styles/Cart.module.css";
+import { CartProducts } from "../../context/contextProducts";
 import QuantityBtn from "../../components/QuantityBtn";
 import {useState} from 'react';
 
 function Singlecar({ item }) {
- 
+  const { addToCart, cart, total, removeFromCart } = CartProducts();
 //   console.log({ total, cart ,removeFromCart});
   const [quantity, setQuantity] = useState(0);
 
