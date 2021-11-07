@@ -1,0 +1,85 @@
+.shoppingCart{
+    width: 100%;
+    height: 50%;
+    background-color: #f2f2f2;
+    /* position: absolute; */
+    
+    display: flex;
+    border-radius: 35px;
+    max-width: 70%;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    flex-direction: column;
+
+}
+
+.title{
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.price{
+    font-size: 20px;
+    font-weight: bold;
+    color: #add8e6;
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.pan{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color:rgb(21, 99, 21);
+    padding: 20px;
+}
+.pan:hover{
+    color: #add8e6;
+}
+.content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+.left{
+    width: 50%; 
+    padding: 10px;
+    margin-right: 10px;
+}
+.right{
+    margin: auto;
+
+}
+.btn{
+    border: none;
+
+}
+.icon{
+    color: red;
+    font-size: 40px;
+}
+.icon:hover{
+    color: #add8e6;
+}
+.confirm{
+  position: relative;
+}
+.btnConfirm{
+   
+    background-color: #6f42c1;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 70%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
