@@ -21,7 +21,11 @@ export default NextAuth({
     }),
   ],
   pages: {},
-  callbacks: {},
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      return baseUrl
+    },
+  },
   theme: "dark",
   jwt:{}
 });
