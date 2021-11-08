@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import main from "../styles/Main.module.css";
 import { getSession } from "next-auth/react";
 import { server } from "../config/config";
-// import { CartProvider } from "../context/contextProducts";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -27,7 +26,12 @@ export default function Home() {
   };
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(server);
+      const res = await fetch(server, {
+        method: "GET",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        }
+      });
       const { data } = await res.json();
       setData(data);
       setCars(data);
