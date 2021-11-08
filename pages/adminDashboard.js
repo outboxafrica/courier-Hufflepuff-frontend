@@ -42,8 +42,6 @@ function AdminDashboard({ orders }) {
           );
         }
         )}
-
-          
         </tbody>
         <style>{`
         .table {
