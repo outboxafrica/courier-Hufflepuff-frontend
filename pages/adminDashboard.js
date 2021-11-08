@@ -4,9 +4,9 @@ import { useAuth } from "../context/authContext";
 import { useRouter } from "next/router";
 import { getDocs, collection, getFirestore } from "firebase/firestore";
 import app from "../firebaseClient";
-function AdminDashboard({orders}) {
+
+function AdminDashboard({ orders }) {
   const { currentUser } = useAuth();
-  console.log(orders)
   const router = useRouter();
   useEffect(() => {
     console.log("checking user");
@@ -29,25 +29,21 @@ function AdminDashboard({orders}) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>marc04@gmail.com</td>
-            <td>Mercedes C-class</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Zoey</td>
-            <td>zoeyk@gmail.com</td>
-            <td>Mercedes A-class</td>
-          </tr>
+        {orders.map((order, index) => {
+          return (
+            <tr key={index}>
+              <th scope="row">{index}</th>
+              <td>{order.name}</td>
+              <td>{order.email}</td>
+              <td>{order.order}</td>
+              <td>{order.quantity}</td>
+              <td>{order.price}</td>
+            </tr>
+          );
+        }
+        )}
 
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry </td>
-            <td>larry02@gmail.com</td>
-            <td>Mercedes C class</td>
-          </tr>
+          
         </tbody>
         <style>{`
         .table {
@@ -58,19 +54,16 @@ function AdminDashboard({orders}) {
   );
 }
 
-export const ServerSideProps = async () => {
-  const db = getFirestore();
-  const orders = [];
-  const orderData = await getDocs(collection(db, "test_db"));
-  orderData.map((doc) => {
-    return orders.push({ ...doc.data(), id: doc.id });
-  });
+export default AdminDashboard;
+
+
+export async function getStaticProps() {
+  const res = await fetch("http://localhost:3000/api/hello");
+  const data = await res.json();
 
   return {
     props: {
-      orders,
+      orders: data,
     },
   };
-};
-
-export default AdminDashboard;
+}
