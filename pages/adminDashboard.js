@@ -36,9 +36,9 @@ function AdminDashboard({ orders }) {
               <th scope="row">{index}</th>
               <td>{order.name}</td>
               <td>{order.email}</td>
-              <td>{order.order}</td>
-              <td>{order.quantity}</td>
-              <td>{order.price}</td>
+              <td>{order.data[0].product}</td>
+              <td>{order.data[0].quantity}</td>
+              <td>${order.data[0].price}</td>
             </tr>
           );
         }
@@ -56,7 +56,7 @@ function AdminDashboard({ orders }) {
 export default AdminDashboard;
 
 export async function getStaticProps() {
-  const res = await fetch("https://courier-hufflepuff-frontend.vercel.app/api/hello");
+  const res = await fetch("https://courier-hufflepuff-frontend-rnvt9z6dm-huff-admin.vercel.app/api/hello");
   const data = await res.json();
 
   return {
