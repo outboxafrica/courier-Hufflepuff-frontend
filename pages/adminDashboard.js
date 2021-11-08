@@ -8,6 +8,7 @@ import app from "../firebaseClient";
 function AdminDashboard({ orders }) {
   const { currentUser } = useAuth();
   const router = useRouter();
+  console.log(orders);
   useEffect(() => {
     console.log("checking user");
     if (currentUser === null) {
