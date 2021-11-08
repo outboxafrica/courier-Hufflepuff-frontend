@@ -54,7 +54,6 @@ function AdminDashboard({ orders }) {
 
 export default AdminDashboard;
 
-
 export async function getStaticProps() {
   const res = await fetch("https://courier-hufflepuff-frontend.vercel.app/api/hello");
   const data = await res.json();
@@ -65,3 +64,4 @@ export async function getStaticProps() {
     },
   };
 }
+
