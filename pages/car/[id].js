@@ -31,7 +31,7 @@ function Singlecar({ item }) {
           <span>{item?.Mileage}</span>
           <div>
             <QuantityBtn quantity={quantity} setQuantity={setQuantity}/>
-            <button onClick={addToCartHandler}>ADD To Cart</button>
+            <button onClick={addToCartHandler} className={styles.btnConfirm}>ADD To Cart</button>
           </div>
         </div>
 

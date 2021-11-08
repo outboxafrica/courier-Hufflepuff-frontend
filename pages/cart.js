@@ -11,12 +11,13 @@ function Cart() {
     const [loading, setLoading] = useState(false)
     const {removeFromCart ,cart} = CartProducts()
     const {data:session , status} = useSession();
+    console.log(data);
 
-    const total = data.reduce((total, item) => total + item.price * item.quantity, 0)
+    const total = data?.reduce((total, item) => total + item.price * item.quantity, 0)
 
     // function to confirm order and add to database and  remove from cart
     const confirmOrder = () => {
-        console.log(cart)
+        // console.log(cart)
         if (data.length > 0) {
             setLoading(true)
             fetch("/api/cart", {
@@ -37,7 +38,7 @@ function Cart() {
             removeFromCart();
     }
 
-    console.log(session)
+    // console.log(session)
 
     //check if on server or client
    
@@ -53,7 +54,7 @@ function Cart() {
             <div className={style.shoppingCart}>
                 <h1 className={style.title}>CartProducts</h1>
                 <h2 className={style.price}>Total: {total}Million</h2>
-                {data.map(item => (
+                {data?.map(item => (
                     <div key={Math.random() * item.id} className={style.content}>
                         <div className={style.left}>
                         <h4>Name:<span className={style.pan}>{item.product}</span></h4>
