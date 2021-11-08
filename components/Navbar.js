@@ -24,8 +24,8 @@ function Navbar() {
         </li>
         <li className={style.link}>
           <Link href="/cart" passHref>
-        <ShoppingCartIcon href="/cart" qty={cart.length}/></Link>
-        </li>
+        <ShoppingCartIcon href="/cart"/></Link>
+        </li><span>{cart.length}</span>
         <p>{session ? session.user.email : null}</p>
         {status === "authenticated" && (
           <li className={style.link}>
