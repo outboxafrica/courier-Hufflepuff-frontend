@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Slider from 'react-slick'
 import style  from '../styles/Slide.module.css';
 function CarSlider({ data }) {
+  console.log(data);
         const settings = {
             dots: true,
             infinite: true,
@@ -15,11 +16,11 @@ function CarSlider({ data }) {
         <div className={style.container} >
             <h2 style={{fontFamily:"Times New Roman"}}>Latest Arrivals</h2>
         <Slider {...settings}>
-          {data.slice(0, 5).map(car => (
-              <div key={car.id} >
+          {data.slice(0, 8).map(item => (
+              <div key={item.id} >
              
-              < Image  src={car.image} alt={car.desc} height="600" width="600"/>
-              <h6>{car.product}</h6>
+              <Image  src={item.image} alt={item.catergory} height="200" width="200"/>
+              <h6>{item.category}</h6>
             </div>
           ))}
           

@@ -15,7 +15,7 @@ function Footer() {
     <footer className={styles.footer}>
       
       <div className={styles.col}>
-      <h1 className={styles.title}>Driveyourdream</h1>
+      <h1 className={styles.title}>EDUMART</h1>
        <div className={styles.button}>
        <button className={styles.btn1}>SELECT</button>
         <button className={styles.btn}>BUY</button>
@@ -55,7 +55,7 @@ function Footer() {
       </div>
       <div className={styles.copyright}>
         <div>
-          <Image src={logo} height="100px" width="100px" alt="benzlogo" className ={styles.img}/>
+          <Image src="/images/logo.jpg" height="100px" width="100px" alt="benzlogo" className ={styles.img}/>
         </div>
         <div>
           <p>Copyright © 2021 Driveyourdream. All rights reserved.</p>

@@ -1,6 +1,6 @@
-const data = require('../../data')
+// const data = require('../../data')
 
-export default function handler(req, res) {
-  console.log(data)
-  res.status(200).json(data)
-}
+// export default function handler(req, res) {
+//   console.log(data)
+//   res.status(200).json(data)
+// }
