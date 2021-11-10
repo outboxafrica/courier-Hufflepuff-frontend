@@ -1,9 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../context/AuthContext";
+import { CartProducts} from "../context/contextProducts"
 function Navbar() {
   const { currentUser, signOut } = useAuth();
-  console.log(currentUser);
+  const {cart} = CartProducts()
+
 
   return (
     <header className="section-header">
@@ -51,7 +53,7 @@ function Navbar() {
                     <i className="fa fa-shopping-cart"></i>
                   </a>
                   <span className="badge badge-pill badge-danger notify">
-                    0
+                   {cart.length}
                   </span>
                 </div>
                 <div className="widget-header icontext">

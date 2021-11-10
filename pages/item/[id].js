@@ -1,20 +1,29 @@
 import Image from "next/image";
-import { server } from "../../config/config";
-import styles from "../../styles/Cart.module.css";
 import { CartProducts } from "../../context/contextProducts";
-import QuantityBtn from "../../components/QuantityBtn";
 import { useState } from "react";
 import Head from "next/head";
+import { toast } from "react-toastify";
 
 function Singlecar({ item }) {
   const { addToCart, cart, total, removeFromCart } = CartProducts();
   //   console.log({ total, cart ,removeFromCart});
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const addToCartHandler = async () => {
     addToCart(item, quantity);
+    toast.success("Added to cart");
     //set item and quantity to localstorage
   };
+
+  const reduceQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  }
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  }
 
   return (
     <>
@@ -98,6 +107,7 @@ function Singlecar({ item }) {
                       <div className="input-group mb-3 input-spinner">
                         <div className="input-group-prepend">
                           <button
+                            onClick={increaseQuantity}
                             className="btn btn-light"
                             type="button"
                             id="button-plus"
@@ -108,6 +118,7 @@ function Singlecar({ item }) {
                         <input type="text" className="form-control" value={quantity} readOnly />
                         <div className="input-group-append">
                           <button
+                            onClick={reduceQuantity}
                             className="btn btn-light"
                             type="button"
                             id="button-minus"
@@ -118,7 +129,9 @@ function Singlecar({ item }) {
                       </div>
                     </div>
                   </div>
-                  <a href="#" className="btn btn-outline-primary">
+                  <a href="#"
+                  onClick={addToCartHandler}
+                  className="btn btn-outline-primary">
                     <span className="text">Add to cart</span>
                     <i className="fas fa-shopping-cart"></i>
                   </a>
