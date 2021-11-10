@@ -1,93 +1,68 @@
-import React from 'react'
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useRouter } from "next/router";
 
-function signup() {
-    return (
-        
-	<div className="card mx-auto" style={{maxWidth:"520px" , marginTop:"40px"}}>
+function Signup() {
+  const { signUp } = useAuth();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await signUp(email, password);
+	  setLoading(false);
+      console.log("signup success");
+	  router.push("/");
+    } catch (error) {
+      alert(error.message);
+	  setLoading(false);
+    }
+  };
+  return (
+    <div
+      className="card mx-auto"
+      style={{ maxWidth: "520px", marginTop: "40px" }}
+    >
       <article className="card-body">
-		<header className="mb-4"><h4 className="card-title">Sign up</h4></header>
-		<form>
-				<div className="form-row">
-					<div className="col form-group">
-						<label>First name</label>
-					  	<input type="text" className="form-control" placeholder="" />
-					</div> 
-                    {/* <!-- form-group end.// --> */}
-					<div className="col form-group">
-						<label>Last name</label>
-					  	<input type="text" className="form-control" placeholder="" />
-					</div>
-                     {/* <!-- form-group end.// --> */}
-				</div>
-                 {/* <!-- form-row end.// --> */}
-				<div className="form-group">
-					<label>Email</label>
-					<input type="email" className="form-control" placeholder="" />
-					<small className="form-text text-muted">We ll never share your email with anyone else.</small>
-				</div>
-                 {/* <!-- form-group end.// --> */}
-				<div className="form-group">
-					<label className="custom-control custom-radio custom-control-inline">
-					  <input className="custom-control-input" checked="" type="radio" name="gender" value="option1" />
-					  <span className="custom-control-label"> Male </span>
-					</label>
-					<label className="custom-control custom-radio custom-control-inline">
-					  <input className="custom-control-input" type="radio" name="gender" value="option2" />
-					  <span className="custom-control-label"> Female </span>
-					</label>
-				</div>
-                 {/* <!-- form-group end.// --> */}
-				<div className="form-row">
-					<div className="form-group col-md-6">
-					  <label>City</label>
-					  <input type="text" className="form-control" />
-					</div> 
-                    {/* <!-- form-group end.// --> */}
-					<div className="form-group col-md-6">
-					  <label>Country</label>
-					  <select id="inputState" className="form-control">
-					    <option> Choose...</option>
-					      <option>Burundi</option>
-					      <option>Kenya</option>
-					      <option selected="">Uganda</option>
-					      <option>Rwanda</option>
-					      <option>South sudan </option>
-					  </select>
-					</div>
-                     {/* <!-- form-group end.// --> */}
-				</div> 
-                {/* <!-- form-row.// --> */}
-				<div className="form-row">
-					<div className="form-group col-md-6">
-						<label>Create password</label>
-					    <input className="form-control" type="password" />
-					</div> 
-                    {/* <!-- form-group end.// -->  */}
-					<div className="form-group col-md-6">
-						<label>Repeat password</label>
-					    <input className="form-control" type="password" />
-					</div> 
-                    {/* <!-- form-group end.// -->   */}
-				</div>
-			    <div className="form-group">
-			        <button type="submit" className="btn btn-primary btn-block"> Register  </button>
-			    </div> 
-                {/* <!-- form-group// -->       */}
-			    <div className="form-group"> 
-		            <label className="custom-control custom-checkbox"> <input type="checkbox" className="custom-control-input" checked="" /> <div className="custom-control-label"> I am agree with <a href="#">terms and contitions</a>  </div> </label>
-		        </div> 
-                {/* <!-- form-group end.// -->            */}
-			</form>
-		</article>
-        {/* <!-- card-body.// --> */}
-    </div> 
-    )
-    {/* <!-- card .// --> */}
-    {/* <p className="text-center mt-4">Have an account? <a href="">Log In</a></p>
-    <br><br>
-    </> */}
-        
-    
+        <header className="mb-4">
+          <h4 className="card-title">Sign up</h4>
+        </header>
+        <form onSubmit={handleSignup}>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <small className="form-text text-muted">
+              We ll never share your email with anyone else.
+            </small>
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          <div className="form-group">
+            <button type="submit" className="btn btn-primary btn-block">
+             {loading ? "Loading..." : "Sign up"}
+            </button>
+          </div>
+        </form>
+      </article>
+    </div>
+  );
 }
 
-export default signup
+export default Signup;

@@ -27,9 +27,9 @@ function Footer() {
           <div>
             <ul className={styles.links}>
               <Link href="/">Home</Link>
-              <Link href="/partners">Partners</Link>
+              <Link href="/item/id">Item</Link>
               <Link href="/contact">Contact</Link>
-              <Link href="/">Buy</Link>
+              
             </ul>
           </div>
         </div>
@@ -58,7 +58,7 @@ function Footer() {
           <Image src="/images/logo.jpg" height="100px" width="100px" alt="benzlogo" className ={styles.img}/>
         </div>
         <div>
-          <p>Copyright © 2021 Driveyourdream. All rights reserved.</p>
+          <p>Copyright © 2021 EDUMART. All rights reserved.</p>
         </div>
         <div className={styles.media}>
           <FacebookIcon className={styles.icon}/>
