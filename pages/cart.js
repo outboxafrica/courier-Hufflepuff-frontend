@@ -29,22 +29,22 @@ function Cart() {
                     </tr>
                   </thead>
                   <tbody>
-                    {cart.map((item, index) => (
+                    {cart && cart.map((item, index) => (
 					 <tr key={index}>
 					 <td>
 					   <figure className="itemside">
 						 <div className="aside">
 						   <Image
-							 src={item.product.image}
+							 src={item.product?.image || item.image}
 							 height={100}
 							 width={100}
-							 alt={item.product.title}
+							 alt={item.product?.title || item.title}
 							 className="img-sm"
 						   />
 						 </div>
 						 <figcaption className="info">
 						   <a href="#" className="title text-dark">
-							 {item.product.title}
+							 {item.product?.title || item.title}
 						   </a>
 						   <p className="text-muted small">
 							 Size: XL, Color: blue, <br /> Brand: Gucci
@@ -59,7 +59,7 @@ function Cart() {
 							 className="btn btn-light"
 							 type="button"
 							 id="button-plus"
-						   >-
+						   >
 							 <i className="fa fa-minus"></i>
 						   </button>
 						 </div>
@@ -74,7 +74,7 @@ function Cart() {
 							 className="btn btn-light"
 							 type="button"
 							 id="button-minus"
-						   >+
+						   >
 							 <i className="fa fa-plus"></i>
 						   </button>
 						 </div>
@@ -82,8 +82,8 @@ function Cart() {
 					 </td>
 					 <td>
 					   <div className="price-wrap">
-						 <var className="price">${parseFloat(item.product.price * item.quantity).toFixed(2)}</var>
-						 <small className="text-muted"> ${item.product.price} each </small>
+						 <var className="price">${parseFloat(item.product?.price * item.quantity || item.price* item.quantity).toFixed(2)}</var>
+						 <small className="text-muted"> ${item.product?.price || item.price } each </small>
 					   </div>
 					 </td>
 					 <td className="text-right">
@@ -96,7 +96,9 @@ function Cart() {
 					   >
 						 <i className="fa fa-heart"></i>
 					   </a>
-					   <a href="" className="btn btn-light">
+					   <a href="#" className="btn btn-light"
+             onClick={() => cart.filter(pdt => pdt.product?.id !== item.product?.id || pdt.id !== item.id)}
+             >
 						 Remove
 					   </a>
 					 </td>
